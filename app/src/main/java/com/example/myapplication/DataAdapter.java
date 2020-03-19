@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +16,7 @@ class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
     private ArrayList<Integer> arrayList;
-    public static Listener listener;
+    private Listener listener;
 
     DataAdapter(Context context,  ArrayList<Integer> arrayList){
         this.arrayList=arrayList;
@@ -23,6 +24,7 @@ class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         this.listener= (Listener) context; // интерфейс для передачи числа в MainActivity
     }
 
+    @NonNull
     @Override
     public DataAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view=inflater.inflate(R.layout.recycle_item, parent, false);
@@ -55,7 +57,7 @@ class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         return arrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder{
         TextView textView;
 
         ViewHolder( View view){

@@ -17,14 +17,16 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements  DataAdapter.Listener  {
 
     final static String NUMBER_FRAGMENT="NUMBER_FRAGMENT";
-    FragmentManager fragmentManager;
-    Fragment recycleFragment;
-    NumberFragment numberFragment;
+    final static String NUMBER="NUMBER";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FragmentManager fragmentManager;
+        Fragment recycleFragment;
 
         if(savedInstanceState==null){
             recycleFragment= new RecycleFragment();
@@ -40,10 +42,12 @@ public class MainActivity extends AppCompatActivity implements  DataAdapter.List
     public void openNumberFragment(int number) {
 
         //создание фрагмента с числом
+        FragmentManager fragmentManager;
+        NumberFragment numberFragment;
 
         numberFragment= new NumberFragment();
         Bundle bundle= new Bundle();
-        bundle.putInt("NUMBER", number);
+        bundle.putInt(NUMBER, number);
         numberFragment.setArguments(bundle);
 
         fragmentManager=getSupportFragmentManager();
@@ -53,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements  DataAdapter.List
                 .addToBackStack(null)
                 .commit();
     }
-
 }
 
 

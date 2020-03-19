@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment;
 
 public class NumberFragment extends Fragment {
 
-    TextView textViewNumber;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
@@ -20,9 +18,10 @@ public class NumberFragment extends Fragment {
         //Получение числа
         Bundle bundle= getArguments();
         if(bundle!=null){
-            textViewNumber=view.findViewById(R.id.textViewNumber);
 
-            int number=bundle.getInt("NUMBER");
+            TextView textViewNumber = view.findViewById(R.id.textViewNumber);
+
+            int number=bundle.getInt(MainActivity.NUMBER);
             textViewNumber.setText(""+number);
             if(number % 2==0){
                 textViewNumber.setTextColor(getResources().getColor(R.color.red));

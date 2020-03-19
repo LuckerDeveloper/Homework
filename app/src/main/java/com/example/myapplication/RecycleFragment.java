@@ -21,6 +21,8 @@ public class RecycleFragment extends Fragment {
     final static String keyArrayList="KEY_ARRAY_LIST";
     ArrayList<Integer> arrayList = new ArrayList<>();
     int spanCount; //число столбцов в recyclerView
+    int spanCountPortrait=3;
+    int spanCountLandscape=4;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,9 +45,9 @@ public class RecycleFragment extends Fragment {
 
         //Установка числа столбцов в зависимости от ориентации экрана
         if(getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT){
-            spanCount=3;
+            spanCount=spanCountPortrait;
         } else {
-            spanCount=4;
+            spanCount=spanCountLandscape;
         }
         recyclerView.setLayoutManager(new GridLayoutManager( inflater.getContext(), spanCount) );
 

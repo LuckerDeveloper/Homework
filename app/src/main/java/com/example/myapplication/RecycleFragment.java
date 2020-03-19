@@ -18,11 +18,12 @@ import java.util.ArrayList;
 
 public class RecycleFragment extends Fragment {
 
-    final static String keyArrayList="KEY_ARRAY_LIST";
+    private final static String KEY_ARRAY_LIST="KEY_ARRAY_LIST";
+    private final static int SPAN_COUNT_PORTAIT=3;
+    private final static int SPAN_COUNT_LANDSCAPE=4;
     ArrayList<Integer> arrayList = new ArrayList<>();
     int spanCount; //число столбцов в recyclerView
-    int spanCountPortrait=3;
-    int spanCountLandscape=4;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class RecycleFragment extends Fragment {
         if(savedInstanceState==null){
             arrayList=getArrayList();
         } else {
-            arrayList=savedInstanceState.getIntegerArrayList(keyArrayList);
+            arrayList=savedInstanceState.getIntegerArrayList(KEY_ARRAY_LIST);
         }
     }
 
@@ -45,9 +46,9 @@ public class RecycleFragment extends Fragment {
 
         //Установка числа столбцов в зависимости от ориентации экрана
         if(getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT){
-            spanCount=spanCountPortrait;
+            spanCount=SPAN_COUNT_PORTAIT;
         } else {
-            spanCount=spanCountLandscape;
+            spanCount=SPAN_COUNT_LANDSCAPE;
         }
         recyclerView.setLayoutManager(new GridLayoutManager( inflater.getContext(), spanCount) );
 
@@ -69,7 +70,7 @@ public class RecycleFragment extends Fragment {
         @Override
         public void onSaveInstanceState(@NonNull Bundle outState) {
             //сохранение arrayList
-            outState.putIntegerArrayList(keyArrayList,arrayList);
+            outState.putIntegerArrayList(KEY_ARRAY_LIST,arrayList);
             super.onSaveInstanceState(outState);
        }
 
